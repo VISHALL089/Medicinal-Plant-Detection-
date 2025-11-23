@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -47,6 +48,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        botanical: {
+          green: "hsl(var(--botanical-green))",
+          "green-light": "hsl(var(--botanical-green-light))",
+          sage: "hsl(var(--botanical-sage))",
+          earth: "hsl(var(--botanical-earth))",
+          cream: "hsl(var(--botanical-cream))",
+          leaf: "hsl(var(--botanical-leaf))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -57,6 +66,20 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      backgroundImage: {
+        'gradient-botanical': 'var(--gradient-botanical)',
+        'gradient-earth': 'var(--gradient-earth)',
+        'gradient-card': 'var(--gradient-card)',
+      },
+      boxShadow: {
+        'botanical': 'var(--shadow-botanical)',
+        'card': 'var(--shadow-card)',
+        'elevated': 'var(--shadow-elevated)',
+      },
+      fontFamily: {
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'serif': ['Playfair Display', 'Georgia', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
