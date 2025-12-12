@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, Leaf, AlertCircle, Info } from "lucide-react";
+import { ArrowLeft, Leaf, Info, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -120,15 +120,6 @@ const Result = () => {
             </div>
           </div>
 
-          {/* Precautions */}
-          {plant.precautions && (
-            <Alert className="bg-destructive/10 border-destructive/20">
-              <AlertCircle className="w-4 h-4 text-destructive" />
-              <AlertDescription className="text-destructive font-medium">
-                <strong>Precautions:</strong> {plant.precautions}
-              </AlertDescription>
-            </Alert>
-          )}
         </Card>
 
         {/* Disclaimer */}
@@ -140,7 +131,7 @@ const Result = () => {
         </Alert>
 
         {/* Action Buttons */}
-        <div className="flex gap-4 mt-6">
+        <div className="flex flex-col sm:flex-row gap-4 mt-6">
           <Button
             variant="outline"
             onClick={() => navigate('/upload')}
@@ -153,6 +144,16 @@ const Result = () => {
             className="flex-1 bg-gradient-botanical hover:opacity-90"
           >
             Browse Plant Library
+          </Button>
+          <Button
+            variant="outline"
+            asChild
+            className="flex-1"
+          >
+            <a href="/medicinal_plants_library.csv" download>
+              <Download className="w-4 h-4 mr-2" />
+              Download CSV
+            </a>
           </Button>
         </div>
       </div>
