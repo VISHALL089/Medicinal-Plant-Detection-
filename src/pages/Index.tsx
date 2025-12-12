@@ -12,7 +12,6 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-6 mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-botanical-cream border border-botanical-green/20">
-              <Leaf className="w-4 h-4 text-botanical-green" />
               <span className="text-sm font-medium text-botanical-green">AI-Powered Plant Identification</span>
             </div>
             
