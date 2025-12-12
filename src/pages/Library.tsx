@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Search, Leaf, Filter } from "lucide-react";
+import { ArrowLeft, Search, Leaf, Filter, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -106,9 +106,15 @@ const Library = () => {
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-3">
             Plant Library
           </h1>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-lg mb-4">
             Browse our comprehensive database of medicinal plants
           </p>
+          <Button variant="outline" asChild>
+            <a href="/medicinal_plants_library.csv" download>
+              <Download className="w-4 h-4 mr-2" />
+              Download CSV
+            </a>
+          </Button>
         </div>
 
         {/* Search and Filter */}
