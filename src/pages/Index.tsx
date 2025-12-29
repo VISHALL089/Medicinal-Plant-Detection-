@@ -18,11 +18,6 @@ const Index = () => {
         
         <div className="max-w-6xl mx-auto relative">
           <div className="text-center space-y-8 mb-16">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 animate-fade-in">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">AI-Powered Plant Recognition</span>
-            </div>
             
             {/* Heading */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-tight">
