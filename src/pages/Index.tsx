@@ -49,23 +49,6 @@ const Index = () => {
               </Link>
             </div>
 
-            {/* Stats */}
-            <div className="flex items-center justify-center gap-8 md:gap-12 pt-8">
-              <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-foreground">106+</p>
-                <p className="text-sm text-muted-foreground">Medicinal Plants</p>
-              </div>
-              <div className="w-px h-12 bg-border" />
-              <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-foreground">AI</p>
-                <p className="text-sm text-muted-foreground">Powered</p>
-              </div>
-              <div className="w-px h-12 bg-border" />
-              <div className="text-center">
-                <p className="text-3xl md:text-4xl font-bold text-foreground">Free</p>
-                <p className="text-sm text-muted-foreground">To Use</p>
-              </div>
-            </div>
           </div>
 
           {/* Action Cards */}
