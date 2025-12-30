@@ -112,10 +112,6 @@ const Upload = () => {
         </Button>
 
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-botanical-cream border border-botanical-green/20 mb-4">
-            <Leaf className="w-4 h-4 text-botanical-green" />
-            <span className="text-sm font-medium text-botanical-green">AI Plant Recognition</span>
-          </div>
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-3">
             Upload Leaf Image
           </h1>
