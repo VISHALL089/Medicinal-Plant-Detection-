@@ -10,6 +10,7 @@ import Result from "./pages/Result";
 import Library from "./pages/Library";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import CsvMatcher from "./pages/CsvMatcher";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
                       <Route path="/upload" element={<Upload />} />
                       <Route path="/result" element={<Result />} />
                       <Route path="/library" element={<Library />} />
+                      <Route path="/csv-matcher" element={<CsvMatcher />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </main>
