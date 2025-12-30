@@ -80,3 +80,21 @@ Then deploy the dist/ folder.
 🔗 Optional: Custom Domain
 
 If you deploy to a hosting service that supports domains, you can connect your custom domain in their settings panel.
+
+
+Segmentation ✂️
+Images are segmented using the HSV (Hue, Saturation, Value) color space to isolate the relevant plant regions, removing unnecessary background.
+<img width="3975" height="1987" alt="image" src="https://github.com/user-attachments/assets/814c5ff2-6d8b-494b-8e80-90df7f584b2d" />
+
+
+ImgSeg
+2. Gray Scale Conversion ⚫
+The segmented images are then converted to grayscale to simplify further processing while preserving essential details.
+
+
+GrayScale
+3. Sobel Filter 📐
+A Sobel Filter is applied to highlight the edges in the images, making them more suitable for feature extraction.
+
+Sobel
+
