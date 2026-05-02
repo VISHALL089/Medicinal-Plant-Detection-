@@ -20,6 +20,70 @@ interface PlantData {
   description: string;
 }
 
+const splitCsvLine = (line: string) => {
+  const values: string[] = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const nextChar = line[i + 1];
+
+    if (char === '"' && nextChar === '"') {
+      current += '"';
+      i++;
+    } else if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if (char === "," && !inQuotes) {
+      values.push(current.trim());
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+
+  values.push(current.trim());
+  return values;
+};
+
+const parseList = (value: string) =>
+  value
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+const loadPlantsFromCsv = async (): Promise<PlantData[]> => {
+  const response = await fetch("/medicinal_plants_library.csv");
+
+  if (!response.ok) {
+    throw new Error("Local plant library CSV could not be loaded.");
+  }
+
+  const csvText = await response.text();
+  const rows = csvText.split(/\r?\n/).filter((line) => line.trim());
+  const headers = splitCsvLine(rows[0]);
+
+  return rows.slice(1).map((row, index) => {
+    const values = splitCsvLine(row);
+    const record = headers.reduce<Record<string, string>>((acc, header, valueIndex) => {
+      acc[header] = values[valueIndex] || "";
+      return acc;
+    }, {});
+
+    return {
+      id: `csv-${index}-${record.common_name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+      common_name: record.common_name,
+      scientific_name: record.scientific_name,
+      category: record.category,
+      parts_used: parseList(record.parts_used),
+      medicinal_properties: parseList(record.medicinal_properties),
+      common_uses: parseList(record.common_uses),
+      precautions: record.precautions,
+      description: record.description,
+    };
+  });
+};
+
 const Library = () => {
   const [plants, setPlants] = useState<PlantData[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantData[]>([]);
@@ -46,13 +110,24 @@ const Library = () => {
 
       if (error) throw error;
 
-      setPlants(data || []);
+      if (data?.length) {
+        setPlants(data);
+        return;
+      }
+
+      const csvPlants = await loadPlantsFromCsv();
+      setPlants(csvPlants);
     } catch (error: any) {
-      toast({
-        title: "Error loading plants",
-        description: error.message,
-        variant: "destructive",
-      });
+      try {
+        const csvPlants = await loadPlantsFromCsv();
+        setPlants(csvPlants);
+      } catch (fallbackError: any) {
+        toast({
+          title: "Error loading plants",
+          description: fallbackError.message || error.message,
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
