@@ -110,13 +110,24 @@ const Library = () => {
 
       if (error) throw error;
 
-      setPlants(data || []);
+      if (data?.length) {
+        setPlants(data);
+        return;
+      }
+
+      const csvPlants = await loadPlantsFromCsv();
+      setPlants(csvPlants);
     } catch (error: any) {
-      toast({
-        title: "Error loading plants",
-        description: error.message,
-        variant: "destructive",
-      });
+      try {
+        const csvPlants = await loadPlantsFromCsv();
+        setPlants(csvPlants);
+      } catch (fallbackError: any) {
+        toast({
+          title: "Error loading plants",
+          description: fallbackError.message || error.message,
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
